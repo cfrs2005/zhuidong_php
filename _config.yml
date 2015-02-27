@@ -1,0 +1,22 @@
+name:   'zhuidong Blog'
+url:    'http://www.xcv5.com'
+author: 'zhuidong'
+
+include:  ['_pages']
+
+paginate:      10
+paginate_path: '/blog/page:num/'
+permalink:     '/blog/:year/:title/'
+relative_permalinks: false
+
+excerpt_separator: "{{ more }}"
+
+safe:     true
+pygments: true
+markdown: 'kramdown'
+timezone: 'Asia/Shanghai'
+
+analytics:
+    provider: google
+    google:
+        tracking_id: 'UA-48817497-1'

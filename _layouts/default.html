@@ -1,0 +1,70 @@
+{% capture location %}{{ page.url | remove_first:'/' | split:'/' | first }}{% endcapture %}<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+		<title>{% if page.title %}{{ page.title }}{% else %}libfeihu{% endif %}</title>
+		
+		<link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+{% if page.blogfeed %}
+		<link rel="alternate" type="application/atom+xml" title="{{ site.name }} — Feed" href="{{ site.url }}/blog/feed.atom" />
+{% endif %}
+		<link rel="stylesheet" href="/css/main.css" />
+		<link rel="stylesheet" href="/css/syntax.css" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="wrapper{% if location == '' %} home{% endif %}">
+			<header>
+				<h1><a href="/"><img src="/img/libfeihu-logo.png" alt="{{ site.name }}" width="300" /></a></h1>
+				<nav><ul>
+					<li><a {% if location == 'blog' %}class="active" {% endif %}href="/blog/">博客</a></li>
+					<li><a {% if location == 'about' %}class="active" {% endif %}href="/about/">关于</a></li>
+					<!--<li><a {% if location == 'projects' %}class="active" {% endif %}href="/projects/">Projects</a></li>-->
+					<li><a {% if location == 'contact' %}class="active" {% endif %}href="/contact/">联系</a></li>
+					<li><a href="http://git.oschina.net/cfrs2005/" target="_blank">关注</a></li>
+				</ul></nav>
+			</header>
+			<section>
+				{{ content }}
+			</section>
+			<footer>
+{% if page.nobio != true %}{% if location != '' %}
+				<img class="avatar" src="http://tp4.sinaimg.cn/1884018943/180/40033761017/1" alt="Me" />
+{% endif %}
+				<p>安静的技术博客 <a href="http://blog.80aj.com">80aj</a>, 所在地:中国-上海.</p>
+				<p><a href="http://git.oschina.net/cfrs2005/">oschina</a> | <a href="http://www.hostloc.com/space-uid-19485.html">hostloc</a> | <a href="http://weibo.com/kingdomconquest">weibo</a></p>
+{% endif %}
+				<p>
+					<small>© {{ site.time | date: '%Y' }} 80aj</small><br />
+					<small>Made with <a href="http://jekyllrb.com/">Jekyll</a> &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small>
+				</p>
+			</footer>
+		</div>
+		<script src="/js/scale.fix.js"></script>
+		<script type="text/javascript">
+			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3fd34e621df89f730a01cfb5f4e00de9' type='text/javascript'%3E%3C/script%3E"));
+
+			var disqus_shortname  = '80aj',
+			    disqus_identifier = '{{ page.path | split:'/' | last | cgi_escape }}',
+			    disqus_url        = '{{ site.url }}{{ page.url | uri_escape }}'
+			;
+			(function() {
+				var load = function(src){
+					var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = src;
+					var e = document.getElementsByTagName('script')[0]; e.parentNode.insertBefore(s, e);
+				};
+				load(('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js');
+				load('//' + disqus_shortname + '.disqus.com/count.js');
+				if (document.getElementById('disqus_thread')) {
+					load('//' + disqus_shortname + '.disqus.com/embed.js');
+				}
+			})();
+		</script>
+	</body>
+</html>
